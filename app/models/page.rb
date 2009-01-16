@@ -5,6 +5,8 @@ class Page < ActiveRecord::Base
   before_save :set_slug, :set_cached_body
   attr_protected :slug, :cached_body
   
+  acts_as_tree
+  
   def data
     unless self.cached_body.blank?
       cached_body
