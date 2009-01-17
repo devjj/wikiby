@@ -31,6 +31,8 @@ Rails::Initializer.run do |config|
   config.gem "rdiscount"
   config.gem "rspec", :lib => false
   config.gem "rspec-rails", :lib => false
+  config.gem "oniguruma", :lib => false
+  config.gem "ultraviolet", :lib => "uv"
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
