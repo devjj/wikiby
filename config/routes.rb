@@ -32,6 +32,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.create_page "/create/*url", :controller => 'wiki', :action => 'create'
   map.edit_page   "/edit/*url",   :controller => 'wiki', :action => 'edit'
+  map.update_page "/update/*url", :controller => 'wiki', :action => 'update'
+
+  map.homepage    "/", :controller => 'wiki', :action => 'index'
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"

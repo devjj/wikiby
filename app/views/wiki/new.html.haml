@@ -1,15 +1,6 @@
 %h1 Creating a New Page
 
 - form_for @page, :url => create_page_path(active_path) do |form|
-  %div
-    %label{:for => "page_title"} Title
-    = form.text_field :title
-  
-  %div
-    %label{:for => "page_body"} Body
-    = form.text_area :body
-
-  = form.hidden_field :suggested_slug
-  = form.hidden_field :reference_location
+  = render :partial => 'form', :object => form
   
   %p.submit= submit_tag "Create &raquo;"

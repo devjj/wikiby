@@ -1,0 +1,6 @@
+%h1== Editing #{h(@page.title)}
+
+- form_for @page, :url => update_page_path(@page.link) do |form|
+  = render :partial => 'form', :object => form
+  
+  %p.submit= submit_tag "Save &raquo;"

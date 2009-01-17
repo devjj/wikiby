@@ -1,0 +1,11 @@
+%div
+  %label{:for => "page_title"} Title
+  = form.text_field :title
+
+%div
+  %label{:for => "page_body"} Body
+  = form.text_area :body
+
+- if @page.new_record?
+  = form.hidden_field :suggested_slug
+  = form.hidden_field :reference_location

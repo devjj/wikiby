@@ -35,7 +35,12 @@ class WikiController < ApplicationController
     @page = Page.new(params[:page])
     
     if @page.save
-      redirect_to @page.location
+      unless @page.slug == 'home'
+        redirect_to @page.location
+      else
+        redirect_to '/'
+      end
+      
     else
       render :action => 'new'
     end
@@ -52,6 +57,21 @@ class WikiController < ApplicationController
   end
 
   def update
+    @page = Page.find_by_location(active_path)
+    
+    if @page
+      if @page.update_attributes(params[:page])
+        unless @page.slug == 'home'
+          redirect_to @page.location
+        else
+          redirect_to homepage_path
+        end
+      else
+        render :action => 'edit'
+      end
+    else
+      redirect_to homepage_path
+    end
   end
 
   def destroy
