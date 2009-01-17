@@ -3,8 +3,15 @@
 #page-body= @active_page.data
 
 #page-children
-  %ul
-    - @active_page.children(:order => 'title asc').each do |child|
-      %li= link_to h(child.title), child.location
+  - unless @active_page.slug == 'home'
+    %p Children of this page.
+    %ul
+      - @active_page.children(:order => 'title asc').each do |child|
+        %li= link_to h(child.title), child.location
+  - else
+    %p Root-level pages.
+    %ul
+      - Page.find_all_by_parent_id(nil, :order => 'title asc').each do |child|
+        %li= link_to h(child.title), child.location
 
 %p.edit= link_to "Edit this page", edit_page_path(@active_page.link)
