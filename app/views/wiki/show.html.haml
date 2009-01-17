@@ -1,0 +1,10 @@
+%h1= h(@active_page.title)
+
+#page-body= @active_page.data
+
+#page-children
+  %ul
+    - @active_page.children(:order => 'title asc').each do |child|
+      %li= link_to h(child.title), child.location
+
+%p.edit= link_to "Edit this page", edit_page_path(@active_page.link)
