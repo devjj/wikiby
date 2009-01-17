@@ -1,6 +1,8 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+class WikiError < StandardError; end
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
@@ -12,4 +14,15 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  def active_path
+    unless @active_path.blank?
+      @active_path
+    else
+      unless params[:url].blank?
+        @active_path = '/' + params[:url].to_a.join('/')
+      else
+        @active_path = '/'
+      end
+    end
+  end
 end
